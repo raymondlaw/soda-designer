@@ -75,8 +75,8 @@ const create_server = function (can, flavors, valid_flavors) {
             let i = valid_flavors.indexOf(user_flavor);
             if (i !== -1) {
                 let filename = `./tmp/${flavors[i].id}-${color.r}-${color.g}-${color.b}.png`;
-                fs.access(filename, fs.constants.R_OK, function (file_does_not_exist) {
-                    if (file_does_not_exist || !cache_enabled) {
+                fs.access(filename, function (does_not_exist) {
+                    if (does_not_exist || !cache_enabled) {
                         create_can(can, color, flavors[i], filename, res);
                     }
                     else {
